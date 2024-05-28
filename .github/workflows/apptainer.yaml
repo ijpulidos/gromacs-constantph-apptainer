@@ -66,7 +66,7 @@ jobs:
         uses: Jimver/cuda-toolkit@v0.2.15
         id: cuda-toolkit
         with:
-          cuda: '12.4.1'
+          cuda: '11.8.0'
 
       - name: Check CUDA versions
         run: |
@@ -96,7 +96,7 @@ jobs:
           cd constantph/gromacs-constantph
           mkdir build
           cd build
-          cmake .. -DGMX_BUILD_OWN_FFTW=ON -DGMX_GPU=CUDA -DGMX_CUDA_TARGET_COMPUTE="75;80;86"
+          cmake .. -DGMX_BUILD_OWN_FFTW=ON -DGMX_GPU=CUDA -DGMX_CUDA_TARGET_COMPUTE="61;75;80;86"
           make
           make install
           source /usr/local/gromacs/bin/GMXRC
