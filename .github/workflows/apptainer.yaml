@@ -98,7 +98,7 @@ jobs:
           cd build
           cmake .. -DGMX_BUILD_OWN_FFTW=ON -DGMX_GPU=CUDA -DGMX_CUDA_TARGET_COMPUTE="61;75;80;86"
           make
-          make install
+          sudo make install
           source /usr/local/gromacs/bin/GMXRC
 
       - name: Create fully qualified image registry path
