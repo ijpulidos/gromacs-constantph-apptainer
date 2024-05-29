@@ -4,9 +4,13 @@ From: nvidia/cuda:11.6.1-devel-ubuntu20.04
 %help
     Container with gromacs constantph using CUDA 11.6 on ubuntu 20.04.
 
+%environment
+    export DEBIAN_FRONTEND=noninteractive
+
 %post
     #Installing all dependencies
     apt-get update && apt-get -y upgrade
+    DEBIAN_FRONTEND=noninteractive TZ=America/New_York apt-get -y install tzdata
     apt-get -y install \
     build-essential \
     wget \
