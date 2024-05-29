@@ -79,11 +79,12 @@ jobs:
         run: |
           git clone https://gitlab.com/gromacs-constantph/constantph.git
           cd constantph
-          LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
-          echo $LATEST_TAG
-          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_OUTPUT
+          # LATEST_REV=$(git describe --tags $(git rev-list --tags --max-count=1))
+          LATEST_REV=$(git rev-parse --short HEAD)
+          echo $LATEST_REV
+          echo "LATEST_REV=$LATEST_REV" >> $GITHUB_OUTPUT
           # In this case the version is the same as the latest_tag
-          VERSION=$LATEST_TAG
+          VERSION=dev
           echo $VERSION
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
@@ -123,7 +124,7 @@ jobs:
           apptainer-version: 1.1.2
 
       - name: Build Apptainer Image
-        run: singularity build gromacs-constantph_${{ steps.latest-version.outputs.VERSION }}.sif docker-daemon:${{ steps.fqirp.outputs.FQIRP }}
+        run: singularity build gromacs-constantph_${{ steps.clone-repo.outputs.VERSION }}.sif docker-daemon:${{ steps.fqirp.outputs.FQIRP }}
 
       - name: Test & Push Apptainer Image
         run: |
