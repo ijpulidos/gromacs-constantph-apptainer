@@ -57,6 +57,6 @@ From: nvidia/cuda:11.6.1-devel-ubuntu20.04
     cmake .. -DGMX_BUILD_OWN_FFTW=ON -DGMX_GPU=CUDA -DGMX_CUDA_TARGET_COMPUTE="61;75;80;86"
     make
     make install
-    ./usr/local/gromacs/bin/GMXRC
+    . /usr/local/gromacs/bin/GMXRC
 
 
